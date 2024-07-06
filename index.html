@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="MathVista, Math Vista">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> CLOMO: Counterfactual Logical Modification with Large Language Models </title>
+
+  <link rel="icon" href="">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <!-- <script src="./static/js/leaderboard_testmini.js"></script>   -->
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <!-- <img src="static/images_fvel/fveler_logo.png" style="width:2.5em;vertical-align: middle" alt="Logo"/> -->
+            <span class="mathvista" style="vertical-align: middle">CLOMO: Counterfactual LOgical MOdification with Large Language Model</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            <!-- Counterfactual Logical Modification with Large Language Models -->
+            <!-- <br> -->            
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <!-- 1st author -->
+            <span class="author-block">
+              <a href="https://eleanor-h.github.io/">Yinya Huang*</a><sup style="color:#ed4b82;">1,8</sup>,
+            </span>
+            <!-- 2nd author -->
+            <span class="author-block">            
+              <a href="https://scholar.google.com.hk/citations?user=GRkwq4IAAAAJ&hl=zh-CN">Ruixin Hong*</a><sup style="color:#800080;">2</sup>,
+            </span>
+            <!-- 3rd author -->
+            <span class="author-block">
+              <a href="https://panda0881.github.io/Hongming_Homepage/">Hongming Zhang</a><sup style="color:#0052D9;">2</sup>,
+            </span>
+            <!-- 4th author -->
+            <span class="author-block">
+              <a href="">Wei Shao</a><sup style="color:#ed4b82;">1</sup>,
+            </span>
+            <!-- 5th author -->
+            <span class="author-block">
+              <a href="">Zhicheng Yang</a><sup style="color:#ffac33">4</sup>,
+            </span>
+            <!-- <br> -->
+            <!-- 6th author -->
+            <span class="author-block">
+              <a href="https://sites.google.com/view/dongyu888/">Dong Yu</a><sup style="color:#0052D9;">2</sup>,
+            </span>
+            <!-- 7th author -->
+            <span class="author-block">
+              <a href="https://www.xyc.tsinghua.edu.cn/en/info/1127/1479.htm">Changshui Zhang</a><sup style="color:#800080;">2</sup>,
+            </span>
+            <!-- 8th author -->
+            <span class="author-block">
+              <a href="https://lemondan.github.io/">Xiaodan Liang</a><sup style="color:DarkGreen">5,</sup><sup style="color:#033cfb">6,</sup><sup style="color:#68d8fb">7</sup>,
+            </span>
+            <!-- 9th author -->
+            <span class="author-block">
+              <a href="">Linqi Song</a><sup style="color:#ed4b82;">1,8</sup>
+            </span>            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup style="color:#ed4b82;">1</sup>City Univeristy of Hong Kong,</span>
+            <span class="author-block"><sup style="color:#800080">2</sup>Tsinghua University,</span><br>
+            <span class="author-block"><sup style="color:#0052D9">3</sup>Tencent AI Lab, Seattle,</span>
+            <span class="author-block"><sup style="color:#ffac33">4</sup>The Hong Kong University of Science and Technology (Guangzhou)</span><br>
+            <span class="author-block"><sup style="color:DarkGreen">5</sup>Shenzhen Campus of Sun Yat-sen University,</span>
+            <span class="author-block"><sup style="color:#033cfb">6</sup>MBZUAI,</span>
+            <span class="author-block"><sup style="color:#68d8fb">7</sup>DarkMatter AI Research,</span>
+            <span class="author-block"><sup style="color:#ed4b82;">8</sup>City University of Hong Kong (Shenzhen) Research Institute</span>
+          </div>
+        
+         
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2311.17438"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+
+              <span class="link-block">
+                <a href="https://github.com/Eleanor-H/CLOMO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Eleanor-H/CLOMO" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                      <!-- <i class="far fa-images"></i> -->
+                      <!-- <p style="font-size:18px">🤗</p> -->
+                      <!-- 🔗 -->
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span> 
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION: Introduction -->
+<!-- <section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this study, we delve into the realm of counterfactual reasoning capabilities of large language models (LLMs). Our primary objective is to cultivate the counterfactual thought processes within LLMs and rigorously assess these processes for their validity. Specifically, we introduce a novel task, <b><u>C</u></b>ounterfactual <b><u>Lo</u></b>gical <b><u>Mo</u></b>dification (CLOMO), and a high-quality human-annotated benchmark. In this task, LLMs must adeptly alter a given argumentative text to uphold a predetermined logical relationship. To effectively evaluate a generation model's counterfactual capabilities, we propose an innovative evaluation metric, the decomposed <em>Self-Evaluation Score (SES)</em> to directly evaluate the natural language output of LLMs instead of modeling the task as a multiplechoice problem. Analysis shows that the proposed automatic metric aligns well with human preference. Our experimental results show that while LLMs demonstrate a notable capacity for logical counterfactual thinking, there remains a discernible gap between their current abilities and human performance.
+          </p>  
+        </div>
+      </div>
+    </div>
+</div>
+</section> -->
+
+
+<!-- SECTION: Leaderboard -->
+<!-- <section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="content">
+          <p class="mt-3">SES scores on <span class="mathvista">CLOMO</span> test set.
+          </p>
+
+          <table class="js-sort-table" id="results">
+            <thead>
+              <tr>
+                <th style="vertical-align: middle;"><strong>#</strong></th>
+                <th style="vertical-align: middle;"><strong>Model</strong></th>
+                <th style="vertical-align: middle;"><strong>Method</strong></th>
+                <th style="vertical-align: middle;"><strong>Source</strong></th>
+                <th style="vertical-align: middle;"><strong>Date</strong></th>
+                <th style="vertical-align: middle;"><strong>SES</strong></th>
+                <th style="vertical-align: middle;"><strong>SES<sub>NA</sub></strong></th> 
+                <th style="vertical-align: middle;"><strong>SES<sub>SA</sub></strong></th> 
+                <th style="vertical-align: middle;"><strong>SES<sub>S</sub></strong></th>
+                <th style="vertical-align: middle;"><strong>SES<sub>W</sub></strong></th>
+              </tr>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><b class="best-score-text">model</b></td>
+                  <td>method todo</td> 
+                  <td><a href="todo" class="ext-link" style="font-size: 16px;">link todo</a></td>
+                  <td>2023-12-26 date todo</td>
+                  <td><b class="best-score-text">todo</b></td>
+                  <td>todo</td>
+                  <td>todo</td>
+                  <td>todo</td>
+                  <td>todo</td>
+                </tr>
+                
+              </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- HEADER: The CLOMO Task -->
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mathvista">
+    <span class="mathvista" style="vertical-align: middle">CLOMO Task</span>
+  </h1>
+  </div>
+</section> -->
+
+<!-- SECTION: CLOMO task & categories -->
+<section class="section">
+  <div class="container">
+    <!-- SUBSECTION: task showcase -->
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+
+        <div class="column is-four-fifths">
+          <!-- <h2 class="title is-3">Counterfactual Logical Modification Task</h2> -->
+          <h2 class="title is-3">Task and Dataset</h2>
+          <div class="content has-text-justified">
+
+            <p>
+              In the <b><u>C</u></b>ounterfactual <b><u>Lo</u></b>gical <b><u>Mo</u></b>dification (<b>CLOMO</b>) task, a model is given a pair of <em>Argument</em> and <em>Premise 1</em> in the relation <em>R</em>, and then is given an additional <em>Premise 2</em> that perturbs <em>R</em>. The model is required to modify <em>Argument</em> to <em>Argument'</em> such that <em>R</em> stands in the <em>Argument'</em>-<em>Premise 2</em> pair.              
+            </p>
+
+            <p>
+              We thus introduce the CLOMO dataset with 1,000 high-quality and challenging questions in four logical relations. The data is collected by multi-turn human annotation and verification.
+            </p>
+
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images_clomo/clomo_task.png" alt="" width="100%"/>
+                  <p class="content has-text-justified">
+                    An LLM is given an argument and two premises. The LLM needs to modify the statements in Argument such that the logical relation <b>R</b> switches to stand in <b>state 2</b> instead of <b>state 1</b>.
+                  </p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images_clomo/clomo_dataset_demonstrations.png" alt="" width="100%"/>
+                  <p class="content has-text-centered">
+                    Four categories of logical restrictions in <span class="mathvista">CLOMO</span>. 
+                  </p>
+                </div>
+              </div>
+            
+            </div>
+
+          </div> 
+          
+          <p class="content has-text-centered">
+            You can download the dataset on <a href="https://github.com/Eleanor-H/CLOMO" target="_blank">the GitHub repo</a>.
+          </p>
+
+        </div>
+    </div>
+  </div>
+
+  <!-- SUBSECTION: data statistics -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images_clomo/clomo_dastaset_stat_1.png" alt="" width="100%"/>
+            <p class="content has-text-centered">
+              Statistics of <span class="mathvista">CLOMO</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images_clomo/clomo_dastaset_stat_2.png" alt="" width="50%"/>
+            <p class="content has-text-centered">
+              <span class="mathvista">CLOMO</span> input length statistics by number of tokens. 
+              CoT: The chain-of-thought setting. 
+              Few: The few-shot setting. 
+              Zero: The zero-shot setting.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- HEADER: The CLOMO Dataset -->
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mathvista">
+    <span class="mathvista" style="vertical-align: middle">CLOMO Dataset</span>
+  </h1>
+  </div>
+</section> -->
+
+
+<!-- SECTION: CLOMO statistics -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Examples</h2>
+
+        <p>Examples in <span class="mathvista">CLOMO</span>.</p>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_example_table8.png" alt="CLOMO sample" width="100%"/>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_example_table9.png" alt="CLOMO sample" width="100%"/>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_example_table10.png" alt="CLOMO sample" width="100%"/>
+            </div>
+          </div>
+
+        </div>
+
+        <br> <br> 
+        <p>Examples of different prompting setups for <span class="mathvista">CLOMO</span>.</p>
+        <div id="results-carousel" class="carousel results-carousel">
+          <!-- few-shot -->
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table11_few.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Necessary Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table12_few.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Sufficient Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table13_few.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Strengthen</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table14_few.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Weaken</em>. </p>
+            </div>
+          </div>
+
+          <!-- zero-shot -->
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table15_zero.png" alt="CLOMO sample" width="100%"/>
+              <p> Example zero-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Necessary Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table16_zero.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Sufficient Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table17_zero.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Strengthen</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table18_zero.png" alt="CLOMO sample" width="100%"/>
+              <p> Example few-shot input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Weaken</em>. </p>
+            </div>
+          </div>
+
+          <!-- cot -->
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table19_cot.png" alt="CLOMO sample" width="100%"/>
+              <p> Example plain CoT input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Necessary Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table20_cot.png" alt="CLOMO sample" width="100%"/>
+              <p> Example plain CoT input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Sufficient Assumption</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table21_cot.png" alt="CLOMO sample" width="100%"/>
+              <p> Example plain CoT input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Strengthen</em>. </p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images_clomo/clomo_prompt_setup_table22_cot.png" alt="CLOMO sample" width="100%"/>
+              <p> Example plain CoT input and output of <span class="mathvista">CLOMO</span>. Logical relation: <em>Weaken</em>. </p>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </div> 
+  </div>
+
+</section>
+
+
+<!-- SECTION: CLOMO statistics -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Self-Evaluation Score (SES)</h2>
+          <div class="content has-text-justified">
+        
+            <p>
+              Additionally, we introduce a <em>Self-Evaluation Score (SES)</em> for the logically consistent generation in CLOMO. SES decomposes the evaluation into several LLMs basic discrimination tasks, which is demonstrated comparable with human evaluation. 
+            </p>
+
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static/images_clomo/ses.png" alt="" width="65%"/>
+                <!-- <p class="content has-text-centered">
+                  SES score.
+                </p> -->
+              </div>
+            </div>
+
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static/images_clomo/ses_tasks.png" alt="" width="100%"/>
+                <p class="content has-text-centered">
+                  Decomposed SES evaluation tasks. 
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION: BIBTEX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <pre><code>
+      @article{huang2023clomo,
+        author = {Huang, Yinya and Hong, Ruixin and Zhang, Hongming and Shao, Wei and Yang, Zhicheng and Yu, Dong and Zhang, Changshui and Liang, Xiaodan and Song, Linqi},
+        journal = {The 62nd Annual Meeting of the Association for Computational Linguistics},
+        title = {{CLOMO}: Counterfactual Logical Modification with Large Language Models},
+        booktitle = {The 62nd Annual Meeting of the Association for Computational Linguistics (ACL 2024)},
+        year = {2024}
+       }
+    </code></pre>
+  </div>
+</section>
+
+
+<!-- SECTION: COLLABORATORS -->
+<section>
+  <div class="section" id="org-banners" style="display:flex">
+   <a href="https://www.cityu.edu.hk/" target="_blank" rel="external">
+        <div id="logo"><img src="static/images_clomo/collaborators/CityU_Vertical_Logo_RGB.jpg" style="width:12.5em;vertical-align: middle"></div>
+    </a>
+    &emsp;&emsp;
+    <a href="https://www.tsinghua.edu.cn/en/" target="_blank" rel="external">
+        <div id="logo"><img src="static/images_clomo/collaborators/logo_Tsinghua_University_Logo-700x700.png" style="width:5.5em;vertical-align: middle"></div>
+    </a> 
+    &emsp;&emsp;&emsp;&emsp;
+    <a href="https://ai.tencent.com/ailab/en/about/" target="_blank" rel="external">
+      <div id="logo"><img src="static/images_clomo/collaborators/logo_tencent_ailab.png" style="width:12.5em;vertical-align: middle"></div>
+    </a> 
+  </div>
+  <div class="section" id="org-banners" style="display:flex">    
+    <a href="https://www.hkust-gz.edu.cn/" target="_blank" rel="external">
+        <div id="logo"><img src="static/images_clomo/collaborators/logo-hkust-gz.png" style="width:16.0em;vertical-align: middle"></div>
+    </a>
+    &emsp;&emsp;
+    <a href="https://www.sysu.edu.en/" target="_blank" rel="external">
+      <div id="logo"><img src="static/images_clomo/collaborators/logo_sysu.png" style="width:5.0em;vertical-align: middle"></div>
+    </a>
+    &emsp;&emsp;
+    <a href="https://mbzuai.ac.ae/" target="_blank" rel="external">
+        <div id="logo"><img src="static/images_clomo/collaborators/MBZUofAI_FullName_Biligual_RGB.png" style="width:16.0em;vertical-align: middle"></div>          
+    </a>
+    &emsp;&emsp;&emsp;
+    <a href="https://www.dm-ai.com/" target="_blank" rel="external">
+        <div id="logo"><img src="static/images_clomo/collaborators/logo_dm.png" style="width:9.0em;vertical-align: middle"></div>
+    </a>    
+  </div>
+</section>
+
+
+<!-- SECTION: FOOTER -->
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://mathverse-cuhk.github.io/">MathVerse</a>, <a href="https://mathvista.github.io/">MathVista</a>, and <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
